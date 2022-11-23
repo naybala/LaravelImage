@@ -45,18 +45,33 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $('#image').change(function() {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#preview-image-before-upload').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-            });
-        });
-    </script>
-    </div>
+
 </body>
+{{-- <script type="text/javascript">
+    var image = document.querySelector("#image");
+    image.addEventListener('change', function() {
+        let reader = new FileReader();
+        console.log(reader);
+        reader.addEventListener('onload', function(e) {
+            console.log(e.target.result);
+        })
+    })
+</script> --}}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $('#image').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#preview-image-before-upload').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+
+    });
+</script>
+</div>
 
 </html>
