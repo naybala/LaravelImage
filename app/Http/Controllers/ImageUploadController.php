@@ -20,7 +20,7 @@ class ImageUploadController extends Controller
         $request->image->move(public_path() . '/images', $fileName);
 
         Photo::create([
-            'name' => $fileName,
+            'name' => "YGN" . " " . $fileName,
             'path' => $fileName,
         ]);
 
