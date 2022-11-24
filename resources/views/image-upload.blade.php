@@ -18,7 +18,7 @@
         <h2 class="text-center">Image Upload with Preview using in Laravel 9</h2>
 
         <form method="POST" enctype="multipart/form-data" id="upload-image" action="{{ url('upload-image') }}">
-
+            @csrf
             <div class="row">
 
                 <div class="col-md-12">
@@ -42,25 +42,34 @@
             </div>
         </form>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    {{--
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
 
 
 </body>
-{{-- <script type="text/javascript">
+<script type="text/javascript">
     var image = document.querySelector("#image");
     image.addEventListener('change', function() {
-        let reader = new FileReader();
-        console.log(reader);
-        reader.addEventListener('onload', function(e) {
-            console.log(e.target.result);
-        })
-    })
-</script> --}}
+
+
+        const preview = document.querySelector('#preview-image-before-upload');
+        const file = image.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener("load", () => {
+            // convert image file to base64 string
+            preview.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function(e) {
         $('#image').change(function() {
             let reader = new FileReader();
@@ -71,7 +80,7 @@
         });
 
     });
-</script>
+</script> --}}
 </div>
 
 </html>

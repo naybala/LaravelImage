@@ -16,20 +16,13 @@ class ImageUploadController extends Controller
     public function store(Request $request)
     {
 
-        $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        $fileName = uniqid() . '_' . $request->image->getClientOriginalName();
+        $request->image->move(public_path() . '/images', $fileName);
 
+        Photo::create([
+            'name' => $fileName,
+            'path' => $fileName,
         ]);
-
-        $name = $request->file('image')->getClientOriginalName();
-
-        $path = $request->file('image')->store('public/images');
-
-        $save = new Photo;
-        $save->name = $name;
-        $save->path = $path;
-
-        return redirect('image-upload-preview')->with('status', 'Image Has been uploaded successfully in laravel');
 
     }
 }
