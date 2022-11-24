@@ -14,9 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('image-upload-preview', [ImageUploadController::class, 'index']);
+Route::get('/', [ImageUploadController::class, 'index']);
 Route::post('upload-image', [ImageUploadController::class, 'store']);
